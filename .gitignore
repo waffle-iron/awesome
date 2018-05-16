@@ -53,3 +53,4 @@ MANIFEST
 .mr.developer.cfg
 .project
 .pydevproject
+.vscode/settings.json
