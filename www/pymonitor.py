@@ -15,40 +15,34 @@ class MyFileSystemEventHander(FileSystemEventHandler):
 
     def __init__(self, fn):
         super(MyFileSystemEventHander, self).__init__()
-        self.restart = fn
+        self.kill = fn
 
     def on_any_event(self, event):
         if event.src_path.endswith('.py'):
             log('Python source file changed: %s' % event.src_path)
-            self.restart()
+            self.kill()
 
 command = ['echo', 'ok']
-process = None
 
 def kill_process():
-    global process
+    process = subprocess.Popen("ps aux|grep -v grep|grep www-data|awk '{print $2}'", stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,shell=True)
+    process=process.stdout.read()
     if process:
-        log('Kill process [%s]...' % process.pid)
-        process.kill()
+        process=str(int(process))
+        log('Kill process [%s]...' % process)
+        process=subprocess.Popen("kill "+process, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,shell=True)
         process.wait()
-        log('Process ended with code %s.' % process.returncode)
-        process = None
-
-def start_process():
-    global process, command
-    log('Start process %s...' % ' '.join(command))
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)
-
-def restart_process():
-    kill_process()
-    start_process()
+        log('Process ended with code  %s.' % process.returncode)
+        process=None
 
 def start_watch(path, callback):
     observer = Observer()
-    observer.schedule(MyFileSystemEventHander(restart_process), path, recursive=True)
+    observer.schedule(MyFileSystemEventHander(kill_process), path, recursive=True)
     observer.start()
+    process = subprocess.Popen("ps aux|grep -v grep|grep www-data|awk '{print $2}'", stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,shell=True)
+    process=int(process.stdout.read())
     log('Watching directory %s...' % path)
-    start_process()
+    log('Watching pid %s...' % process)
     try:
         while True:
             time.sleep(0.5)

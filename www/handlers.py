@@ -135,6 +135,7 @@ def authenticate(*, email, passwd):
     # authenticate ok, set cookie:
     r = web.Response()
     r.set_cookie(COOKIE_NAME, user2cookie(user, 86400), max_age=86400, httponly=True)
+    r.set_cookie('userID', user.id, max_age=86400, httponly=False)
     user.passwd = '******'
     r.content_type = 'application/json'
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
@@ -145,6 +146,7 @@ def signout(request):
     referer = request.headers.get('Referer')
     r = web.HTTPFound(referer or '/')
     r.set_cookie(COOKIE_NAME, '-deleted-', max_age=0, httponly=True)
+    r.set_cookie('userID', '', max_age=0, httponly=False)
     logging.info('user signed out.')
     return r
 
@@ -250,11 +252,12 @@ def api_register_user(*, email, name, passwd):
         raise APIError('register:failed', 'email', 'Email is already in use.')
     uid = next_id()
     sha1_passwd = '%s:%s' % (uid, passwd)
-    user = User(id=uid, name=name.strip(), email=email, passwd=hashlib.sha1(sha1_passwd.encode('utf-8')).hexdigest(), image='http://www.gravatar.com/avatar/%s?d=mm&s=120' % hashlib.md5(email.encode('utf-8')).hexdigest())
+    user = User(id=uid, name=name.strip(), email=email, passwd=hashlib.sha1(sha1_passwd.encode('utf-8')).hexdigest(), image='https://www.gravatar.com/avatar/%s?d=mm&s=120' % hashlib.md5(email.encode('utf-8')).hexdigest())
     yield from user.save()
     # make session cookie:
     r = web.Response()
     r.set_cookie(COOKIE_NAME, user2cookie(user, 86400), max_age=86400, httponly=True)
+    r.set_cookie('userID', user.id, max_age=86400, httponly=False)
     user.passwd = '******'
     r.content_type = 'application/json'
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
