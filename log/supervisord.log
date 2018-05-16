@@ -1,0 +1,106 @@
+2018-05-05 20:34:39,922 CRIT Supervisor running as root (no user in config file)
+2018-05-05 20:34:39,924 INFO daemonizing the supervisord process
+2018-05-05 20:34:39,925 INFO supervisord started with pid 3800
+2018-05-05 20:34:40,927 INFO spawned: 'awesome' with pid 3801
+2018-05-05 20:34:41,267 INFO exited: awesome (exit status 1; not expected)
+2018-05-05 20:34:42,270 INFO spawned: 'awesome' with pid 3804
+2018-05-05 20:34:42,604 INFO exited: awesome (exit status 1; not expected)
+2018-05-05 20:34:44,607 INFO spawned: 'awesome' with pid 3808
+2018-05-05 20:34:44,960 INFO exited: awesome (exit status 1; not expected)
+2018-05-05 20:34:47,964 INFO spawned: 'awesome' with pid 3810
+2018-05-05 20:34:48,329 INFO exited: awesome (exit status 1; not expected)
+2018-05-05 20:34:49,331 INFO gave up: awesome entered FATAL state, too many start retries too quickly
+2018-05-05 20:35:24,578 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-05 20:35:25,580 INFO spawned: 'awesome' with pid 3828
+2018-05-05 20:35:28,901 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-05 21:08:47,326 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-05 21:08:48,329 INFO spawned: 'awesome' with pid 4882
+2018-05-05 21:08:51,638 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-05 21:29:40,809 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-05 21:29:41,812 INFO spawned: 'awesome' with pid 5407
+2018-05-05 21:29:45,142 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 00:09:47,482 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 00:09:48,484 INFO spawned: 'awesome' with pid 28990
+2018-05-12 00:09:51,786 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:36:18,383 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:36:19,386 INFO spawned: 'awesome' with pid 31103
+2018-05-12 01:36:22,699 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:40:46,576 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:40:47,579 INFO spawned: 'awesome' with pid 31250
+2018-05-12 01:40:50,862 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:43:49,385 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:43:50,388 INFO spawned: 'awesome' with pid 31399
+2018-05-12 01:43:53,674 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:44:08,751 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:44:09,753 INFO spawned: 'awesome' with pid 31423
+2018-05-12 01:44:13,064 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:46:13,125 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:46:14,128 INFO spawned: 'awesome' with pid 31540
+2018-05-12 01:46:17,438 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:46:25,692 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:46:26,694 INFO spawned: 'awesome' with pid 31564
+2018-05-12 01:46:29,979 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:56:24,052 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:56:25,054 INFO spawned: 'awesome' with pid 32022
+2018-05-12 01:56:28,350 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:56:32,499 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:56:33,501 INFO spawned: 'awesome' with pid 32036
+2018-05-12 01:56:36,802 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:56:37,808 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:56:38,811 INFO spawned: 'awesome' with pid 32055
+2018-05-12 01:56:42,123 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:58:47,801 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:58:48,803 INFO spawned: 'awesome' with pid 32118
+2018-05-12 01:58:52,093 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 01:59:09,359 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 01:59:10,362 INFO spawned: 'awesome' with pid 32143
+2018-05-12 01:59:13,668 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 02:36:28,706 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 02:36:29,709 INFO spawned: 'awesome' with pid 670
+2018-05-12 02:36:33,013 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 02:37:33,071 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 02:37:34,073 INFO spawned: 'awesome' with pid 717
+2018-05-12 02:37:37,393 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-12 02:37:44,329 INFO exited: awesome (terminated by SIGTERM; not expected)
+2018-05-12 02:37:45,332 INFO spawned: 'awesome' with pid 747
+2018-05-12 02:37:48,616 INFO success: awesome entered RUNNING state, process has stayed up for > than 3 seconds (startsecs)
+2018-05-14 01:16:53,596 WARN received SIGHUP indicating restart request
+2018-05-14 01:16:53,597 WARN received SIGHUP indicating restart request
+2018-05-14 01:16:53,627 INFO waiting for awesome to die
+2018-05-14 01:16:53,598 WARN received SIGHUP indicating restart request
+2018-05-14 01:16:53,628 INFO stopped: awesome (terminated by SIGTERM)
+2018-05-14 01:16:53,598 WARN received SIGHUP indicating restart request
+2018-05-14 01:16:53,628 WARN received SIGTERM indicating exit request
+2018-05-14 01:16:53,798 CRIT Supervisor running as root (no user in config file)
+2018-05-14 01:16:53,800 INFO supervisord started with pid 3267
+2018-05-14 01:16:53,791 CRIT Supervisor running as root (no user in config file)
+2018-05-14 01:16:53,801 INFO supervisord started with pid 3800
+2018-05-14 01:16:53,801 CRIT Supervisor running as root (no user in config file)
+2018-05-14 01:16:53,802 INFO supervisord started with pid 3019
+2018-05-14 01:16:54,804 INFO spawned: 'awesome' with pid 4550
+2018-05-14 01:16:54,805 INFO spawned: 'awesome' with pid 4551
+2018-05-14 01:16:54,806 INFO spawned: 'awesome' with pid 4552
+2018-05-14 01:16:56,555 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:16:56,572 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:16:56,575 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:16:57,558 INFO spawned: 'awesome' with pid 4600
+2018-05-14 01:16:57,574 INFO spawned: 'awesome' with pid 4603
+2018-05-14 01:16:57,577 INFO spawned: 'awesome' with pid 4604
+2018-05-14 01:16:59,027 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:16:59,093 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:16:59,165 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:17:01,030 INFO spawned: 'awesome' with pid 4617
+2018-05-14 01:17:01,095 INFO spawned: 'awesome' with pid 4619
+2018-05-14 01:17:01,168 INFO spawned: 'awesome' with pid 4623
+2018-05-14 01:17:02,453 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:17:02,529 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:17:02,648 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:17:05,457 INFO spawned: 'awesome' with pid 5122
+2018-05-14 01:17:05,533 INFO spawned: 'awesome' with pid 5124
+2018-05-14 01:17:05,651 INFO spawned: 'awesome' with pid 5129
+2018-05-14 01:17:06,487 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:17:06,607 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:17:06,856 INFO exited: awesome (exit status 1; not expected)
+2018-05-14 01:17:07,488 INFO gave up: awesome entered FATAL state, too many start retries too quickly
+2018-05-14 01:17:07,608 INFO gave up: awesome entered FATAL state, too many start retries too quickly
+2018-05-14 01:17:07,857 INFO gave up: awesome entered FATAL state, too many start retries too quickly
