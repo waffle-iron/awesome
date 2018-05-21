@@ -9,7 +9,7 @@ async web application.
 
 import logging; logging.basicConfig(level=logging.INFO)
 
-import asyncio, os, json, time
+import asyncio, os, json, time, uvloop
 from datetime import datetime
 
 from aiohttp import web
@@ -150,6 +150,7 @@ def init(loop):
     logging.info('server started at http://0.0.0.0:9000...')
     return srv
 
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 loop = asyncio.get_event_loop()
 loop.run_until_complete(init(loop))
 loop.run_forever()
