@@ -9,7 +9,7 @@ async web application.
 
 import logging; logging.basicConfig(level=logging.INFO)
 
-import asyncio, os, json, time, uvloop
+import asyncio, os, json, time, uvloop, bjoern
 from datetime import datetime
 
 from aiohttp import web
