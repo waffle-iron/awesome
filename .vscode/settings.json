@@ -1,2 +1,18 @@
-{
+// Place your settings in this file to overwrite the default settings
+{	
+	"editor.wrappingColumn": 80,
+	"editor.fontFamily": "微软雅黑",
+	"files.autoSave": "afterDelay",
+	"git.confirmSync": false,
+	"git.autofetch": true,
+	"workbench.colorTheme": "Visual Studio Dark",
+	"editor.wordWrap": "on",
+	"git.enableSmartCommit": true,
+	"workbench.iconTheme": "vscode-icons",
+	"terminal.integrated.fontSize": 12,
+	"terminal.integrated.fontFamily": "微软雅黑",
+	"terminal.integrated.fontWeightBold": "normal",
+	"workbench.startupEditor": "newUntitledFile",
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false
 }

@@ -1,49 +1,24 @@
-{% extends '__base__.html' %} {% block title %}{{ blog.name }}{% endblock %} {% block beforehead %}
-
-<script>
-
-    var comment_url = '/api/blogs/{{ blog.id }}/comments';
-
-    $(function () {
-        var $form = $('#form-comment');
-        $form.submit(function (e) {
-            e.preventDefault();
-            $form.showFormError('');
-            var content = $form.find('textarea').val().trim();
-            if (content === '') {
-                return $form.showFormError('请输入评论内容！');
-            }
-            $form.postJSON(comment_url, { content: content }, function (err, result) {
-                if (err) {
-                    return $form.showFormError(err);
-                }
-                refresh();
-            });
-        });
-    });
-</script> {% endblock %} {% block content %}
+{% extends '__base__.html' %} {% block title %}{{ blog.name }}{% endblock %} {% block content %}
 
 <div class="uk-width-medium-3-4">
     <article class="uk-article">
         <h2>{{ blog.name }}</h2>
+        <a href="/blog/{{ blog.id }}#disqus_thread"></a>
         <p class="uk-article-meta">发表于{{ blog.created_at|datetime }}</p>
         <p>{{ blog.html_content|safe }}</p>
     </article>
 
     <hr class="uk-article-divider">
-    
+
     <div id="disqus_thread"></div>
     <script>
-
         /**
         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        /*
         var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = 'https://www.larky.top/blog/{{ blog.id }}';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{ blog.id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
-        */
         (function () { // DON'T EDIT BELOW THIS LINE
             var d = document, s = d.createElement('script');
             s.src = 'https://larky-top.disqus.com/embed.js';
@@ -54,7 +29,6 @@
     <noscript>Please enable JavaScript to view the
         <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
     </noscript>
-
 </div>
 
 <div class="uk-width-medium-1-4">
@@ -64,23 +38,5 @@
             <h3>{{ blog.user_name }}</h3>
         </div>
     </div>
-    <div class="uk-panel uk-panel-header">
-        <h3 class="uk-panel-title">友情链接</h3>
-        <ul class="uk-list uk-list-line">
-            <li>
-                <i class="uk-icon-link"></i>
-                <a href="#">编程</a>
-            </li>
-            <li>
-                <i class="uk-icon-link"></i>
-                <a href="#">思考</a>
-            </li>
-            <li>
-                <i class="uk-icon-link"></i>
-                <a href="#">读书</a>
-            </li>
-        </ul>
-    </div>
 </div>
-
 {% endblock %}
