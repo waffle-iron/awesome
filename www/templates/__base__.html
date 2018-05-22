@@ -17,32 +17,36 @@
 {% endmacro %}
 -->
 <html>
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MVJKHGT');</script>
-<!-- End Google Tag Manager -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119143686-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('set', {'user_id': 'USER_ID'}); // 使用已登录的 user_id 来设置用户 ID。
-  gtag('config', 'UA-119143686-1');
-</script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-9669932258373272",
-    enable_page_level_ads: true
-  });
-</script>
-    <meta charset="utf-8" />
-    {% block meta %}<!-- block meta  -->{% endblock %}
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MVJKHGT');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119143686-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('set', { 'user_id': 'USER_ID' }); // 使用已登录的 user_id 来设置用户 ID。
+        gtag('config', 'UA-119143686-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9669932258373272",
+            enable_page_level_ads: true
+        });
+    </script>
+    <meta charset="utf-8" /> {% block meta %}
+    <!-- block meta  -->{% endblock %}
     <title>{% block title %} ? {% endblock %} - Awesome Python Webapp</title>
     <link rel="stylesheet" href="/static/css/uikit.min.css">
     <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
@@ -52,37 +56,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="/static/js/uikit.min.js"></script>
     <script src="/static/js/sticky.min.js"></script>
     <script src="/static/js/vue.min.js"></script>
-    <script src="/static/js/awesome.js"></script>
-    {% block beforehead %}<!-- before head  -->{% endblock %}
+    <script src="/static/js/awesome.js"></script> {% block beforehead %}
+    <!-- before head  -->{% endblock %}
 </head>
+
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVJKHGT"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVJKHGT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <script id="dsq-count-scr" src="//larky-top.disqus.com/count.js" async></script>
     <nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
         <div class="uk-container uk-container-center">
             <a href="/" class="uk-navbar-brand">Awesome</a>
             <ul class="uk-navbar-nav">
-                <li data-url="blogs"><a href="/"><i class="uk-icon-home"></i> 日志</a></li>
-                <li><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000"><i class="uk-icon-book"></i> 教程</a></li>
-                <li><a target="_blank" href="https://github.com/michaelliao/awesome-python3-webapp"><i class="uk-icon-code"></i> 源码</a></li>
+                <li data-url="blogs">
+                    <a href="/">
+                        <i class="uk-icon-home"></i> 日志</a>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">
+                        <i class="uk-icon-book"></i> 教程</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://github.com/michaelliao/awesome-python3-webapp">
+                        <i class="uk-icon-code"></i> 源码</a>
+                </li>
             </ul>
             <div class="uk-navbar-flip">
                 <ul class="uk-navbar-nav">
-                {% if __user__ %}
+                    {% if __user__ %}
                     <li class="uk-parent" data-uk-dropdown>
-                        <a href="#0"><i class="uk-icon-user"></i> {{ __user__.name }}</a>
+                        <a href="#0">
+                            <i class="uk-icon-user"></i> {{ __user__.name }}</a>
                         <div class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
-                                <li><a href="/signout"><i class="uk-icon-sign-out"></i> 登出</a></li>
+                                <li>
+                                    <a href="/signout">
+                                        <i class="uk-icon-sign-out"></i> 登出</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
-                {% else %}
-                    <li><a href="/signin"><i class="uk-icon-sign-in"></i> 登陆</a></li>
-                    <li><a href="/register"><i class="uk-icon-edit"></i> 注册</a></li>
-                {% endif %}
+                    {% else %}
+                    <li>
+                        <a href="/signin">
+                            <i class="uk-icon-sign-in"></i> 登陆</a>
+                    </li>
+                    <li>
+                        <a href="/register">
+                            <i class="uk-icon-edit"></i> 注册</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -91,8 +117,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="uk-container uk-container-center">
         <div class="uk-grid">
             <!-- content -->
-            {% block content %}
-            {% endblock %}
+            {% block content %} {% endblock %}
             <!-- // content -->
         </div>
     </div>
@@ -106,12 +131,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a target="_blank" href="http://www.linkedin.com/in/liaoxuefeng" class="uk-icon-button uk-icon-linkedin-square"></a>
                     <a target="_blank" href="https://twitter.com/liaoxuefeng" class="uk-icon-button uk-icon-twitter"></a>
                 </p>
-                <p>Powered by <a href="http://awesome.liaoxuefeng.com">Awesome Python Webapp</a>. Copyright &copy; 2014. [<a href="/manage/" target="_blank">Manage</a>]</p>
-                <p><a href="http://www.liaoxuefeng.com/" target="_blank">www.liaoxuefeng.com</a>. All rights reserved.</p>
-                <a target="_blank" href="http://www.w3.org/TR/html5/"><i class="uk-icon-html5" style="font-size:64px; color: #444;"></i></a>
+                <p>Powered by
+                    <a href="http://awesome.liaoxuefeng.com">Awesome Python Webapp</a>. Copyright &copy; 2014. [
+                    <a href="/manage/" target="_blank">Manage</a>]</p>
+                <p>
+                    <a href="http://www.liaoxuefeng.com/" target="_blank">www.liaoxuefeng.com</a>. All rights reserved.</p>
+                <a target="_blank" href="http://www.w3.org/TR/html5/">
+                    <i class="uk-icon-html5" style="font-size:64px; color: #444;"></i>
+                </a>
             </div>
 
         </div>
     </div>
 </body>
+
 </html>
