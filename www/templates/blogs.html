@@ -6,8 +6,10 @@
         <h2>
             <a href="/blog/{{ blog.id }}">{{ blog.name }}</a>
         </h2>
-        <a href="/blog/{{ blog.id }}#disqus_thread"></a>
-        <p class="uk-article-meta">发表于{{ blog.created_at|datetime }}</p>
+        <div class="uk-article-meta">
+            发表于{{ blog.created_at|datetime }}
+            <a href="/blog/{{ blog.id }}#disqus_thread"></a>
+        </div>
         <p>{{ blog.summary }}</p>
         <p>
             <a href="/blog/{{ blog.id }}">继续阅读

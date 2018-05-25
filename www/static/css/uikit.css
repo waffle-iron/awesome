@@ -374,6 +374,7 @@ nav,
 section,
 summary {
   display: block;
+  background-color: rgba(0, 0, 0, 0.01);
 }
 /*
  * Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
@@ -1972,8 +1973,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
    Component: Navbar
  ========================================================================== */
 .uk-navbar {
-  background: #eee;
-  color: #444;
+  
 }
 /*
  * Micro clearfix
