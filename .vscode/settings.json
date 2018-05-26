@@ -14,5 +14,6 @@
 	"terminal.integrated.fontWeightBold": "normal",
 	"workbench.startupEditor": "newUntitledFile",
 	"explorer.confirmDragAndDrop": false,
-	"explorer.confirmDelete": false
+	"explorer.confirmDelete": false,
+	"python.formatting.provider": "autopep8"
 }
