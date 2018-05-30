@@ -1,5 +1,6 @@
 aiohttp==3.2.1
 aiohttp-jinja2==1.0.0
+aiomysql==0.0.15
 attrs==18.1.0
 codecov==2.0.15
 pytest==3.5.1
