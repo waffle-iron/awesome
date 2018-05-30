@@ -1,7 +1,6 @@
 import sys
 import pytest
-sys.path.append('../www')
-from app import *
+from www.app import *
 
 
 @pytest.fixture(scope='session')
