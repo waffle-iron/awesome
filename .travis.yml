@@ -5,4 +5,4 @@
     - pip install -r requirements.txt
   script:
     - cd test
-    - python -m pydoc -v -s --setup-show 
+    - python -m pytest -v -s --setup-show 
