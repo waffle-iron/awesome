@@ -82,8 +82,8 @@ async def init(loop):
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 loop = asyncio.get_event_loop()
-args = parser.parse_args()
 if __name__ == "__main__":
+    args = parser.parse_args()
     app = loop.run_until_complete(init(loop))
     web.run_app(app, path=args.path, port=args.port)
 # web.run_app(app,  host='127.0.0.1', port=9000, reuse_address=True, reuse_port=True)
