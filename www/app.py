@@ -11,7 +11,6 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-import aiohttp_debugtoolbar
 import aiohttp_jinja2
 import jinja2
 from aiohttp import web
@@ -74,7 +73,6 @@ async def init(loop):
     PROJECT_ROOT = Path(__file__).parent
     templates = PROJECT_ROOT / 'templates'
     app = web.Application(loop=loop, middlewares=[logger_factory, auth_factory])
-    # aiohttp_debugtoolbar.setup(app, intercept_exc='debug')
     loader = jinja2.FileSystemLoader([str(templates)])
     aiohttp_jinja2.setup(app, loader=loader, filters=dict(datetime=datetime_filter))
     app.add_routes(handlers.routes)
@@ -86,4 +84,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     app = loop.run_until_complete(init(loop))
     web.run_app(app, path=args.path, port=args.port)
-# web.run_app(app,  host='127.0.0.1', port=9000, reuse_address=True, reuse_port=True)
