@@ -1,0 +1,6 @@
+aiohttp==3.2.1
+aiohttp-jinja2==1.0.0
+codecov==2.0.15
+pytest==3.5.1
+pytest-aiohttp==0.3.0
+uvloop==0.9.1
