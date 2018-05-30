@@ -4,7 +4,7 @@ sys.path.append('../www')
 from app import *
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture()
 def cli(aiohttp_client,loop):
     app = loop.run_until_complete(init(loop))
     return loop.run_until_complete(aiohttp_client(app))
