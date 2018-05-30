@@ -1,141 +1,58 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'Michael Liao'
-
-'''
-async web application.
-'''
-
+import argparse
 import asyncio
 import json
 import logging
 import os
+import sys
 import time
 from datetime import datetime
+from pathlib import Path
 
+import aiohttp_debugtoolbar
+import aiohttp_jinja2
+import jinja2
 from aiohttp import web
 from jinja2 import Environment, FileSystemLoader
 
-import aiohttp_debugtoolbar
-import bjoern
+import handlers
 import orm
 import uvloop
 from config import configs
-from coroweb import add_routes, add_static
 from handlers import COOKIE_NAME, cookie2user
 
-logging.basicConfig(level=logging.INFO)
+parser = argparse.ArgumentParser(description="aiohttp server")
+parser.add_argument('--path')
+parser.add_argument('--port')
+parent = Path('.').parent
+parent = str(parent.absolute())
+sys.path.insert(0, parent)
+logging.basicConfig(level=logging.DEBUG)
+log = logging.getLogger()
+log.setLevel(logging.DEBUG)
 
 
-def init_jinja2(app, **kw):
-    logging.info('init jinja2...')
-    options = dict(
-        autoescape=kw.get('autoescape', True),
-        block_start_string=kw.get('block_start_string', '{%'),
-        block_end_string=kw.get('block_end_string', '%}'),
-        variable_start_string=kw.get('variable_start_string', '{{'),
-        variable_end_string=kw.get('variable_end_string', '}}'),
-        auto_reload=kw.get('auto_reload', True)
-    )
-    path = kw.get('path', None)
-    if path is None:
-        path = os.path.join(os.path.dirname(
-            os.path.abspath(__file__)), 'templates')
-    logging.info('set jinja2 template path: %s' % path)
-    env = Environment(loader=FileSystemLoader(path), **options)
-    filters = kw.get('filters', None)
-    if filters is not None:
-        for name, f in filters.items():
-            env.filters[name] = f
-    app['__templating__'] = env
+@web.middleware
+async def logger_factory(request, handler):
+    logging.info('Request: %s %s' % (request.method, request.path))
+    return await handler(request)
 
 
-@asyncio.coroutine
-def logger_factory(app, handler):
-    @asyncio.coroutine
-    def logger(request):
-        logging.info('Request: %s %s' % (request.method, request.path))
-        # yield from asyncio.sleep(0.3)
-        return (yield from handler(request))
-    return logger
-
-
-@asyncio.coroutine
-def auth_factory(app, handler):
-    @asyncio.coroutine
-    def auth(request):
-        logging.info('check user: %s %s' % (request.method, request.path))
-        request.__user__ = None
-        cookie_str = request.cookies.get(COOKIE_NAME)
-        if cookie_str:
-            user = yield from cookie2user(cookie_str)
-            if user:
-                logging.info('set current user: %s' % user.email)
-                request.__user__ = user
-        if request.path.startswith('/manage/') and (request.__user__ is None or not request.__user__.admin):
-            return web.HTTPFound('/signin')
-        return (yield from handler(request))
-    return auth
-
-
-@asyncio.coroutine
-def data_factory(app, handler):
-    @asyncio.coroutine
-    def parse_data(request):
-        if request.method == 'POST':
-            if request.content_type.startswith('application/json'):
-                request.__data__ = yield from request.json()
-                logging.info('request json: %s' % str(request.__data__))
-            elif request.content_type.startswith('application/x-www-form-urlencoded'):
-                request.__data__ = yield from request.post()
-                logging.info('request form: %s' % str(request.__data__))
-        return (yield from handler(request))
-    return parse_data
-
-
-@asyncio.coroutine
-def response_factory(app, handler):
-    @asyncio.coroutine
-    def response(request):
-        logging.info('Response handler...')
-        r = yield from handler(request)
-        if isinstance(r, web.StreamResponse):
-            return r
-        if isinstance(r, bytes):
-            resp = web.Response(body=r)
-            resp.content_type = 'application/octet-stream'
-            return resp
-        if isinstance(r, str):
-            if r.startswith('redirect:'):
-                return web.HTTPFound(r[9:])
-            resp = web.Response(body=r.encode('utf-8'))
-            resp.content_type = 'text/html;charset=utf-8'
-            return resp
-        if isinstance(r, dict):
-            template = r.get('__template__')
-            if template is None:
-                resp = web.Response(body=json.dumps(
-                    r, ensure_ascii=False, default=lambda o: o.__dict__).encode('utf-8'))
-                resp.content_type = 'application/json;charset=utf-8'
-                return resp
-            else:
-                r['__user__'] = request.__user__
-                resp = web.Response(body=app['__templating__'].get_template(
-                    template).render(**r).encode('utf-8'))
-                resp.content_type = 'text/html;charset=utf-8'
-                return resp
-        if isinstance(r, int) and t >= 100 and t < 600:
-            return web.Response(t)
-        if isinstance(r, tuple) and len(r) == 2:
-            t, m = r
-            if isinstance(t, int) and t >= 100 and t < 600:
-                return web.Response(t, str(m))
-        # default:
-        resp = web.Response(body=str(r).encode('utf-8'))
-        resp.content_type = 'text/plain;charset=utf-8'
-        return resp
-    return response
+@web.middleware
+async def auth_factory(request, handler):
+    logging.info('check user: %s %s' % (request.method, request.path))
+    request.__user__ = None
+    cookie_str = request.cookies.get(COOKIE_NAME)
+    if cookie_str:
+        user = await cookie2user(cookie_str)
+        if user:
+            logging.info('set current user: %s' % user.email)
+            request['__user__'] = user
+    if request.path.startswith('/manage/') and (request.get('__user__') is None or not request.get('__user__').admin):
+        return web.HTTPFound('/signin')
+    return await handler(request)
 
 
 def datetime_filter(t):
@@ -154,19 +71,19 @@ def datetime_filter(t):
 
 async def init(loop):
     await orm.create_pool(loop=loop, **configs.db)
-    app = web.Application(loop=loop, middlewares=[
-        logger_factory, auth_factory, response_factory
-    ])
-    # aiohttp_debugtoolbar.setup(app)
-    init_jinja2(app, filters=dict(datetime=datetime_filter))
-    add_routes(app, 'handlers')
-    add_static(app)
+    PROJECT_ROOT = Path(__file__).parent
+    templates = PROJECT_ROOT / 'templates'
+    app = web.Application(loop=loop, middlewares=[logger_factory, auth_factory])
+    # aiohttp_debugtoolbar.setup(app, intercept_exc='debug')
+    loader = jinja2.FileSystemLoader([str(templates)])
+    aiohttp_jinja2.setup(app, loader=loader, filters=dict(datetime=datetime_filter))
+    app.add_routes(handlers.routes)
     return app
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 loop = asyncio.get_event_loop()
-app = loop.run_until_complete(init(loop))
-web.run_app(app,  host='127.0.0.1', port=9000,
-            reuse_address=True, reuse_port=True)
-# bjoern.run(app, '127.0.0.1', 9000, reuse_port=True)
-logging.info('server started at http://0.0.0.0:9000...')
+args = parser.parse_args()
+if __name__ == "__main__":
+    app = loop.run_until_complete(init(loop))
+    web.run_app(app, path=args.path, port=args.port)
+# web.run_app(app,  host='127.0.0.1', port=9000, reuse_address=True, reuse_port=True)

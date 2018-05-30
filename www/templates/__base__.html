@@ -20,25 +20,38 @@
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-MVJKHGT');</script>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MVJKHGT');
+    </script>
     <!-- End Google Tag Manager -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119143686-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
         gtag('config', 'UA-119143686-1');
     </script> {% if __user__ %}
     <script>
-        gtag('set', { 'user_id': '{{__user__.id}}' }); // 使用已登录的 user_id 来设置用户 ID。
+        gtag('set', {
+            'user_id': '{{__user__.id}}'
+        }); // 使用已登录的 user_id 来设置用户 ID。
     </script> {% endif %}
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -57,8 +70,10 @@
     <script src="/static/js/uikit.js"></script>
     <script src="/static/js/sticky.min.js"></script>
     <script src="/static/js/vue.min.js"></script>
-    <script src="/static/js/awesome.js"></script> {% block beforehead %}
-    <!-- before head  -->{% endblock %}
+    <script src="/static/js/awesome.js"></script>
+    {% block beforehead %}
+    <!-- before head  -->
+    {% endblock %}
 </head>
 
 <body>
@@ -67,8 +82,8 @@
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVJKHGT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js" async></script>
     <script id="dsq-count-scr" src="//larky-top.disqus.com/count.js" async></script>
-    <script type="text/javascript" src="https://git.hust.cc/canvas-nest.js/src/canvas-nest.js"></script>
     <nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
         <div class="uk-container uk-container-center">
             <a href="/" class="uk-navbar-brand">Awesome</a>

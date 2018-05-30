@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {	
-	"editor.wrappingColumn": 80,
+	"editor.wrappingColumn": 140,
 	"editor.fontFamily": "微软雅黑",
 	"files.autoSave": "afterDelay",
 	"git.confirmSync": false,
@@ -15,5 +15,9 @@
 	"workbench.startupEditor": "newUntitledFile",
 	"explorer.confirmDragAndDrop": false,
 	"explorer.confirmDelete": false,
-	"python.formatting.provider": "autopep8"
+	"python.formatting.provider": "autopep8",
+	"python.formatting.autopep8Args": [
+		"--max-line-length",
+		"140"
+	]
 }
