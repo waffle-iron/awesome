@@ -4,33 +4,49 @@
     <article class="uk-article">
         <h2>{{ blog.name }}</h2>
         <div class="uk-article-meta">
-            发表于{{ blog.created_at|datetime }}
-            <a href="/blog/{{ blog.id }}#disqus_thread"></a>
+            发表于{{ blog.created_at|datetime }} {#
+            <a href="/blog/{{ blog.id }}#disqus_thread"></a> #}
         </div>
         <p>{{ blog.html_content|safe }}</p>
     </article>
 
     <hr class="uk-article-divider">
 
-    <div id="disqus_thread"></div>
-    <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        var disqus_config = function () {
-            this.page.url = 'https://www.larky.top/blog/{{ blog.id }}';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = '{{ blog.id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        (function () { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://larky-top.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
+    <div id="gitalk-container">
+    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: '3f9871676892063ca889',
+            clientSecret: '90331275b5169497498ea07f21afc8346a8bc531',
+            repo: 'awesome',
+            owner: 'cqa34688',
+            admin: ['cqa34688'],
+            id: location.pathname,
+            distractionFreeMode: true
+        })
+        gitalk.render('gitalk-container')
     </script>
-    <noscript>Please enable JavaScript to view the
-        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-    </noscript>
 </div>
 
-{% endblock %}
+{#
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    var disqus_config = function () {
+        this.page.url = 'https://www.larky.top/blog/{{ blog.id }}'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '{{ blog.id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+        s.src = 'https://larky-top.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+</div> #} {% endblock %}
