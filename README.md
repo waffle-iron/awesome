@@ -1,3 +1,4 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/cqa34688/awesome.png?columns=all)](https://waffle.io/cqa34688/awesome?utm_source=badge)
 # awesome-python3-webapp
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2766fa0737fa47dfbcbd9416feefa560)](https://app.codacy.com/app/cqa34688/awesome?utm_source=github.com&utm_medium=referral&utm_content=cqa34688/awesome&utm_campaign=badger)
 [![CircleCI](https://circleci.com/gh/cqa34688/awesome.svg?style=svg)](https://circleci.com/gh/cqa34688/awesome)
